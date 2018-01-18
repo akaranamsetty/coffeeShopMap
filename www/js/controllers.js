@@ -3,12 +3,15 @@ var app = angular.module('caffeinehit.controllers', []);
 app.controller("YelpController", function ($scope, YelpService, NgMap) {
 	$scope.yelp = YelpService;
 
-	NgMap.getMap().then(function(map){
+	NgMap.getMap("coffeeShopMap").then(function(map){
 	  console.log("Map" , map);
     $scope.map = map;
   })
+ /* $scope.$on('mapInitialized', function (event, map) {
+    $scope.map = map;
+  });*/
 
-  $scope.showCafeInfo = function(cafe, event){
+  $scope.showCafeInfo = function(event, cafe){
 	  $scope.yelp.cafe = cafe;
 	  $scope.map.showInfoWindow.apply(this, [event, "marker-info"]);
   }
